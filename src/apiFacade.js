@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/startkodeca3";
+const URL = "https://www.josefsendavid.dk/ca3";
  
 function handleHttpErrors(res) {
  if (!res.ok) {
@@ -41,6 +41,13 @@ const fetchData = () => {
     return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
 }
 
+const fetchDefault = (callback) => {
+  const options = makeOptions("GET")
+  return fetch("https://www.josefsendavid.dk/ca3/api/hobby", options)
+  .then(handleHttpErrors)
+  .then(data => {callback(data)})
+}
+
 const makeOptions= (method,addToken,body) =>{
    var opts = {
      method: method,
@@ -64,7 +71,8 @@ const makeOptions= (method,addToken,body) =>{
      loggedIn,
      login,
      logout,
-     fetchData
+     fetchData,
+     fetchDefault
  }
 }
 
